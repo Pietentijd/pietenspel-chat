@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Het Grote Sinterklaas Spel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>🎁 Het Grote Sinterklaas Spel 🎁</h1>
+        <p>Welkom op de digitale Pakjesboot! Chat met Piet of vang de pepernoten.</p>
+    </header>
+
+    <main class="container">
+        <section class="box profile-box" id="profile-box">
+            <div class="section-heading">
+                <h2>📋 Vraagjes voor Piet</h2>
+                <button id="close-profile-btn" class="close-btn" type="button" aria-label="Vragen sluiten">×</button>
+            </div>
+            <div class="profile-form">
+                <div class="input-row">
+                    <label for="profile-name">Naam</label>
+                    <div class="inline-field">
+                        <input id="profile-name" type="text" placeholder="Bijv. Emma">
+                        <button class="skip-btn" type="button" data-skip="profile-name">Overslaan</button>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <label for="profile-gift">Favoriete cadeautje</label>
+                    <div class="inline-field">
+                        <input id="profile-gift" type="text" placeholder="Bijv. LEGO">
+                        <button class="skip-btn" type="button" data-skip="profile-gift">Overslaan</button>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <label for="profile-snack">Favoriete snoep</label>
+                    <div class="inline-field">
+                        <input id="profile-snack" type="text" placeholder="Bijv. pepernoten">
+                        <button class="skip-btn" type="button" data-skip="profile-snack">Overslaan</button>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <label for="profile-fun">Leukste deel van pakjesavond</label>
+                    <div class="inline-field">
+                        <input id="profile-fun" type="text" placeholder="Bijv. het openen van pakjes">
+                        <button class="skip-btn" type="button" data-skip="profile-fun">Overslaan</button>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button id="save-profile-btn" type="button" class="save-btn">Gebruik mijn antwoorden</button>
+                    <button id="skip-all-btn" type="button" class="skip-all-btn">Alles overslaan</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="box">
+            <div class="section-heading">
+                <h2>💬 Chat met Kletspiet</h2>
+                <button id="open-profile-btn" class="profile-link" type="button">Vragen openen</button>
+            </div>
+            <div id="chat-box" aria-live="polite">
+                <div class="msg piet-msg"><strong>Kletspiet:</strong> Hallo daar! Wat leuk dat je er bent. Heb je al zin in pakjesavond? 🎁</div>
+            </div>
+            <div class="chat-input-area">
+                <input id="chat-input" type="text" placeholder="Typ hier je berichtje aan Piet..." aria-label="Bericht invoeren">
+                <button id="send-btn" type="button">Stuur</button>
+            </div>
+            <div class="suggestions" aria-label="Snelle gespreksonderwerpen">
+                <button class="suggestion-btn" type="button" data-message="Ik wil graag over cadeaus praten">🎁 Cadeaus</button>
+                <button class="suggestion-btn" type="button" data-message="Ik vind pepernoten lekker">🍪 Snoep</button>
+                <button class="suggestion-btn" type="button" data-message="Wat doe jij vandaag?">💬 Vraag Piet</button>
+            </div>
+        </section>
+
+        <section class="box">
+            <h2>🍪 Pepernoten Vangen</h2>
+            <div id="score-board">Punten: <span id="score">0</span></div>
+            <div id="game-area" aria-label="Spelgebied">
+                <div id="pepernoot" class="pepernoot" role="button" tabindex="0" aria-label="Pepernoot">🍪</div>
+            </div>
+            <p class="game-tip">Klik zo snel mogelijk op de pepernoot voor hij verspringt!</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
