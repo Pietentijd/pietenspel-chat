@@ -15,6 +15,7 @@ const profileBox = document.getElementById('profile-box');
 const closeProfileBtn = document.getElementById('close-profile-btn');
 const openProfileBtn = document.getElementById('open-profile-btn');
 const skipAllBtn = document.getElementById('skip-all-btn');
+const chatHistory = [];
 
 let conversationState = {
     topic: null,
@@ -177,17 +178,37 @@ function generatePietReply(userText) {
     return pietAntwoorden[Math.floor(Math.random() * pietAntwoorden.length)];
 }
 
-function sendMsg() {
+async function sendMsg() {
     const text = input.value.trim();
-    if (!text) return;
+    if (!text || sendBtn.disabled) return;
 
     addMessage('Jij', text, 'user-msg');
     input.value = '';
+    chatHistory.push({ role: 'user', content: text });
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Even denken...';
 
-    setTimeout(() => {
-        const antwoord = generatePietReply(text);
-        addMessage('Kletspiet', antwoord, 'piet-msg');
-    }, 1000);
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages: chatHistory.slice(-12) })
+        });
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || 'OpenAI gaf geen antwoord.');
+        }
+
+        chatHistory.push({ role: 'assistant', content: result.reply });
+        addMessage('Kletspiet', result.reply, 'piet-msg');
+    } catch (error) {
+        addMessage('Kletspiet', generatePietReply(text), 'piet-msg');
+    } finally {
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Stuur';
+        input.focus();
+    }
 }
 
 saveProfileBtn.addEventListener('click', saveProfile);
