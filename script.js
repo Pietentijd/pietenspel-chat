@@ -375,8 +375,20 @@ const teamMissions = [
 ];
 let currentRoomCode = '';
 let selectedAvatar = '🧝';
-const playerSessionId = sessionStorage.getItem('pietenspel-player-id') || crypto.randomUUID();
-sessionStorage.setItem('pietenspel-player-id', playerSessionId);
+function getPlayerSessionId() {
+    try {
+        const storedId = sessionStorage.getItem('pietenspel-player-id');
+        if (storedId) return storedId;
+
+        const generatedId = globalThis.crypto?.randomUUID?.() || `player-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        sessionStorage.setItem('pietenspel-player-id', generatedId);
+        return generatedId;
+    } catch (error) {
+        return `player-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    }
+}
+
+const playerSessionId = getPlayerSessionId();
 const coopGame = {
     left: { x: 12, y: 50 },
     right: { x: 88, y: 50 },
