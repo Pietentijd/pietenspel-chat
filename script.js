@@ -625,12 +625,24 @@ function renderTeamChat(messages) {
     teamChatBox.scrollTop = teamChatBox.scrollHeight;
 }
 
+function cleanTeamChatMessages(messages) {
+    let previousMessage = '';
+    return messages.filter((message) => {
+        const signature = `${message.sender}|${message.text}`;
+        const isDuplicate = !message.id && signature === previousMessage;
+        previousMessage = signature;
+        return !isDuplicate;
+    });
+}
+
 function loadTeamChat() {
     if (!teamChatBox || !currentRoomCode) return;
 
     try {
         const messages = JSON.parse(localStorage.getItem(`pietenspel-chat-${currentRoomCode}`) || '[]');
-        renderTeamChat(Array.isArray(messages) ? messages : []);
+        const cleanedMessages = cleanTeamChatMessages(Array.isArray(messages) ? messages : []);
+        localStorage.setItem(`pietenspel-chat-${currentRoomCode}`, JSON.stringify(cleanedMessages));
+        renderTeamChat(cleanedMessages);
     } catch (error) {
         renderTeamChat([]);
     }
