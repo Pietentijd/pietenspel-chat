@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kleurplaten | Pietentijd</title>
+    <link rel="stylesheet" href="style.css?v=5">
+    <style>
+        .coloring-page {
+            max-width: 820px;
+            flex-direction: column;
+        }
+
+        .coloring-page > .box {
+            flex: none;
+            width: 100%;
+        }
+
+        .coloring-intro {
+            line-height: 1.5;
+        }
+
+        .coloring-preview {
+            background: #fff;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .coloring-preview img {
+            display: block;
+            width: 100%;
+            max-height: 720px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .image-missing {
+            color: #5c0612;
+            padding: 80px 20px;
+            line-height: 1.5;
+        }
+
+        .coloring-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 18px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #ffd700;
+            color: #5c0612;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <h1>🎨 Pietentijd 🎨</h1>
+        <p>Kleurplaten voor een gezellige pakjesavond.</p>
+    </header>
+
+    <nav class="main-menu" aria-label="Hoofdmenu">
+        <a class="menu-btn" href="index.html">🏠 Home</a>
+        <a class="menu-btn" href="chat.html">💬 Chat</a>
+        <a class="menu-btn" href="pepernoten.html">🍪 Pepernoten</a>
+        <a class="menu-btn" href="samen.html">🤝 Samen spelen</a>
+        <a class="menu-btn active" href="kleurplaten.html">🎨 Kleurplaten</a>
+    </nav>
+
+    <main class="container coloring-page">
+        <section class="box">
+            <h2>🎨 Kleurplaat van Piet</h2>
+            <p class="coloring-intro">Bekijk de kleurplaat hieronder. Download hem en print hem uit om lekker te kleuren.</p>
+
+            <div class="coloring-preview">
+                <img id="coloring-image" src="kleurplaat-piet.png" alt="Kleurplaat van een Piet met cadeautjes">
+                <p id="image-missing" class="image-missing" hidden>De kleurplaat-afbeelding staat nog niet in de projectmap. Gebruik hiervoor de bestandsnaam <strong>kleurplaat-piet.png</strong>.</p>
+            </div>
+
+            <div class="coloring-actions">
+                <a class="download-btn" href="kleurplaat-piet.png" download>⬇️ Kleurplaat downloaden</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const image = document.getElementById('coloring-image');
+        const missingMessage = document.getElementById('image-missing');
+
+        image.addEventListener('error', () => {
+            image.hidden = true;
+            missingMessage.hidden = false;
+        });
+    </script>
+</body>
+</html>
