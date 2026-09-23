@@ -642,6 +642,7 @@ function sendTeamChatMessage() {
 
     const messages = JSON.parse(localStorage.getItem(`pietenspel-chat-${currentRoomCode}`) || '[]');
     const message = {
+        id: `${playerSessionId}-${Date.now()}-${Math.random().toString(36).slice(2)}`,
         sender: (playerNameInput?.value || '').trim() || `Speler ${getSelectedRole()}`,
         text
     };
@@ -670,6 +671,7 @@ if ('BroadcastChannel' in window) {
         const { roomCode, message } = event.data || {};
         if (!teamChatBox || roomCode !== currentRoomCode || !message?.text) return;
         const messages = JSON.parse(localStorage.getItem(`pietenspel-chat-${roomCode}`) || '[]');
+        if (message.id && messages.some((item) => item.id === message.id)) return;
         const nextMessages = [...messages, message].slice(-40);
         localStorage.setItem(`pietenspel-chat-${roomCode}`, JSON.stringify(nextMessages));
         renderTeamChat(nextMessages);
