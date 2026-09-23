@@ -355,16 +355,12 @@ const teamProgressEl = document.getElementById('team-progress');
 const restartTeamBtn = document.getElementById('restart-team-btn');
 const roleStatusEl = document.getElementById('role-status');
 const touchArrowButtons = document.querySelectorAll('.touch-arrow');
-const teamChatBox = document.getElementById('team-chat-box');
-const teamChatInput = document.getElementById('team-chat-input');
-const teamChatSend = document.getElementById('team-chat-send');
 const coopBoard = document.getElementById('co-op-board');
 const coopLeftPlayer = document.getElementById('game-player-left');
 const coopRightPlayer = document.getElementById('game-player-right');
 const coopGifts = Array.from(document.querySelectorAll('.game-gift'));
 const roomChannel = 'pietenspel-room';
 const coopGameChannel = 'pietenspel-coop-game';
-const teamChatChannel = 'pietenspel-team-chat';
 const totalTeamRounds = 5;
 const teamMissions = [
     'Werk samen en maak de pakjesboot klaar voor vertrek.',
@@ -598,101 +594,6 @@ function canControlSelectedRole() {
     return !owner || owner === playerSessionId;
 }
 
-function updateTeamChatAccess() {
-    const enabled = Boolean(currentRoomCode && getSelectedRole() && canControlSelectedRole());
-    if (teamChatInput) teamChatInput.disabled = !enabled;
-    if (teamChatSend) teamChatSend.disabled = !enabled;
-}
-
-function renderTeamChat(messages) {
-    if (!teamChatBox) return;
-
-    messages = cleanTeamChatMessages(messages);
-    teamChatBox.replaceChildren();
-    if (!messages.length) {
-        const emptyMessage = document.createElement('div');
-        emptyMessage.className = 'team-chat-empty';
-        emptyMessage.textContent = 'Nog geen berichten. Kies een rol om te chatten.';
-        teamChatBox.appendChild(emptyMessage);
-        return;
-    }
-
-    messages.forEach((message) => {
-        const messageElement = document.createElement('div');
-        messageElement.className = 'team-chat-message';
-        messageElement.textContent = `${message.sender}: ${message.text}`;
-        teamChatBox.appendChild(messageElement);
-    });
-    teamChatBox.scrollTop = teamChatBox.scrollHeight;
-}
-
-function cleanTeamChatMessages(messages) {
-    let previousMessage = null;
-    return messages.filter((message) => {
-        const sameText = previousMessage && previousMessage.sender === message.sender && previousMessage.text === message.text;
-        const closeTogether = !previousMessage?.time || !message.time || message.time - previousMessage.time < 1500;
-        const isDuplicate = Boolean(sameText && closeTogether);
-        previousMessage = message;
-        return !isDuplicate;
-    });
-}
-
-function loadTeamChat() {
-    if (!teamChatBox || !currentRoomCode) return;
-
-    try {
-        const messages = JSON.parse(localStorage.getItem(`pietenspel-chat-${currentRoomCode}`) || '[]');
-        const cleanedMessages = cleanTeamChatMessages(Array.isArray(messages) ? messages : []);
-        localStorage.setItem(`pietenspel-chat-${currentRoomCode}`, JSON.stringify(cleanedMessages));
-        renderTeamChat(cleanedMessages);
-    } catch (error) {
-        renderTeamChat([]);
-    }
-}
-
-function sendTeamChatMessage() {
-    const text = teamChatInput?.value.trim();
-    if (!text || !currentRoomCode || !getSelectedRole() || !canControlSelectedRole()) return;
-
-    const messages = JSON.parse(localStorage.getItem(`pietenspel-chat-${currentRoomCode}`) || '[]');
-    const message = {
-        id: `${playerSessionId}-${Date.now()}-${Math.random().toString(36).slice(2)}`,
-        time: Date.now(),
-        sender: (playerNameInput?.value || '').trim() || `Speler ${getSelectedRole()}`,
-        text
-    };
-    const nextMessages = [...messages, message].slice(-40);
-    localStorage.setItem(`pietenspel-chat-${currentRoomCode}`, JSON.stringify(nextMessages));
-    renderTeamChat(nextMessages);
-    teamChatInput.value = '';
-
-    if ('BroadcastChannel' in window) {
-        const channel = new BroadcastChannel(teamChatChannel);
-        channel.postMessage({ roomCode: currentRoomCode, message });
-        channel.close();
-    }
-}
-
-if (teamChatSend) teamChatSend.addEventListener('click', sendTeamChatMessage);
-if (teamChatInput) {
-    teamChatInput.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') sendTeamChatMessage();
-    });
-}
-
-if ('BroadcastChannel' in window) {
-    const chatChannel = new BroadcastChannel(teamChatChannel);
-    chatChannel.addEventListener('message', (event) => {
-        const { roomCode, message } = event.data || {};
-        if (!teamChatBox || roomCode !== currentRoomCode || !message?.text) return;
-        const messages = JSON.parse(localStorage.getItem(`pietenspel-chat-${roomCode}`) || '[]');
-        if (message.id && messages.some((item) => item.id === message.id)) return;
-        const nextMessages = [...messages, message].slice(-40);
-        localStorage.setItem(`pietenspel-chat-${roomCode}`, JSON.stringify(nextMessages));
-        renderTeamChat(nextMessages);
-    });
-}
-
 function updateRoleStatus() {
     if (!roleStatusEl || !currentRoomCode) return;
 
@@ -702,7 +603,6 @@ function updateRoleStatus() {
     if (!role) {
         roleStatusEl.textContent = 'Kies eerst speler links of speler rechts.';
         updateControlAccess();
-        updateTeamChatAccess();
         return;
     }
     const owner = claimedRoles[role];
@@ -710,7 +610,6 @@ function updateRoleStatus() {
         ? `Speler ${role} is al bezet. Kies de andere rol.`
         : `Jij speelt als speler ${role}. Deze rol is voor jou gereserveerd.`;
     updateControlAccess();
-    updateTeamChatAccess();
 }
 
 function applyCurrentPlayerInfo() {
@@ -730,7 +629,6 @@ function applyCurrentPlayerInfo() {
         if (claimedRoles[otherRole] && claimedRoles[otherRole] !== playerSessionId) {
             if (roleStatusEl) roleStatusEl.textContent = 'Beide rollen zijn al bezet in deze kamer.';
             updateControlAccess();
-            updateTeamChatAccess();
             return;
         }
 
@@ -799,7 +697,6 @@ function setCurrentRoomCode(code) {
     currentRoomCode = code;
     roomCodeEl.textContent = code;
     loadCoopState();
-    loadTeamChat();
     updateTeamStatus();
 }
 

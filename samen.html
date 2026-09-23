@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samen spelen</title>
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
     <header class="topbar"><h1>🎁 Het Grote Sinterklaas Spel 🎁</h1><p>Werk samen aan jullie pakjesavondmissie.</p></header>
@@ -19,10 +19,9 @@
                 <div class="team-room join-room"><p class="label">Code van een ander invoeren</p><div class="join-row"><input id="join-room-input" type="text" placeholder="Bijv. SPEEL-AB12" aria-label="Code invoeren"><button id="join-room-btn" type="button">Ga naar kamer</button></div></div>
             </div>
             <div class="team-player-box"><p class="label">Kies jouw poppetje</p><div class="avatar-picker"><button class="avatar-option active" type="button" data-avatar="🧝">🧝</button><button class="avatar-option" type="button" data-avatar="🧑‍🚀">🧑‍🚀</button><button class="avatar-option" type="button" data-avatar="🎩">🎩</button><button class="avatar-option" type="button" data-avatar="🦊">🦊</button></div><div class="player-role-switch"><label><input type="radio" name="team-role" value="left"> Ik ben speler links</label><label><input type="radio" name="team-role" value="right"> Ik ben speler rechts</label></div><input id="player-name-input" type="text" placeholder="Typ je naam..." aria-label="Spelernaam"><div id="role-status" class="role-status" aria-live="polite">Kies eerst speler links of speler rechts.</div></div>
-            <div class="team-chat"><div class="team-game-header"><span>💬 Kamerchat</span><strong>Praat samen</strong></div><div id="team-chat-box" class="team-chat-box" aria-live="polite"><div class="team-chat-empty">Kies eerst een rol om te chatten.</div></div><div class="team-chat-input"><input id="team-chat-input" type="text" placeholder="Typ een bericht voor je team..." aria-label="Bericht voor je team"><button id="team-chat-send" type="button">Stuur</button></div></div>
             <div class="team-game"><div class="team-game-header"><span>Pakjesrace</span><strong>2 spelers</strong></div><p class="mission-text">Verzamel samen alle pakjes op het speelveld.</p><div id="co-op-board" class="co-op-board" tabindex="0" aria-label="Pakjesrace speelveld"><div id="game-gift-1" class="game-gift">🎁</div><div id="game-gift-2" class="game-gift">🎁</div><div id="game-gift-3" class="game-gift">🎁</div><div id="game-gift-4" class="game-gift">🎁</div><div id="game-gift-5" class="game-gift">🎁</div><div id="game-player-left" class="game-player player-left">🧝</div><div id="game-player-right" class="game-player player-right">🎩</div></div><div class="game-keys"><span><strong>Links</strong> WASD of pijltjes</span><span><strong>Rechts</strong> WASD of pijltjes</span></div><div class="touch-controls" aria-label="Touchbediening"><div><strong>Links</strong><button class="touch-arrow" data-player="left" data-dx="0" data-dy="-4" type="button">▲</button><span><button class="touch-arrow" data-player="left" data-dx="-4" data-dy="0" type="button">◀</button><button class="touch-arrow" data-player="left" data-dx="0" data-dy="4" type="button">▼</button><button class="touch-arrow" data-player="left" data-dx="4" data-dy="0" type="button">▶</button></span></div><div><strong>Rechts</strong><button class="touch-arrow" data-player="right" data-dx="0" data-dy="-4" type="button">▲</button><span><button class="touch-arrow" data-player="right" data-dx="-4" data-dy="0" type="button">◀</button><button class="touch-arrow" data-player="right" data-dx="0" data-dy="4" type="button">▼</button><button class="touch-arrow" data-player="right" data-dx="4" data-dy="0" type="button">▶</button></span></div></div><div id="team-progress" class="team-progress" aria-live="polite">0 van 5 pakjes verzameld</div><div id="shared-status" class="house-status">Klaar? Beweeg allebei naar de pakjes!</div><button id="restart-team-btn" type="button" class="restart-btn">Opnieuw spelen</button></div>
         </section>
     </main>
-    <script src="script.js?v=7"></script>
+    <script src="script.js?v=8"></script>
 </body>
 </html>

@@ -395,51 +395,6 @@ button:hover {
     gap: 12px;
 }
 
-.team-chat {
-    background: rgba(255,255,255,0.08);
-    border: 2px solid rgba(255,215,0,0.5);
-    border-radius: 12px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.team-chat-box {
-    min-height: 110px;
-    max-height: 190px;
-    overflow-y: auto;
-    background: #fff;
-    color: #5c0612;
-    border-radius: 8px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.team-chat-message {
-    padding: 7px 9px;
-    background: #f9f7d2;
-    border-radius: 7px;
-    overflow-wrap: anywhere;
-}
-
-.team-chat-empty {
-    color: #6d5d5d;
-    font-size: 13px;
-}
-
-.team-chat-input {
-    display: flex;
-    gap: 8px;
-}
-
-.team-chat-input input {
-    min-width: 0;
-    flex: 1;
-}
-
 .avatar-picker {
     display: flex;
     flex-wrap: wrap;
@@ -679,8 +634,7 @@ button:hover {
 
     .chat-input-area,
     .inline-field,
-    .join-row,
-    .team-chat-input {
+    .join-row {
         flex-wrap: wrap;
     }
 
@@ -693,8 +647,7 @@ button:hover {
 
     .chat-input-area button,
     .inline-field button,
-    .join-row button,
-    .team-chat-input button {
+    .join-row button {
         width: 100%;
     }
 
