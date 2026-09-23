@@ -11,6 +11,53 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
+}
+
+.home-box {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.home-text {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+}
+
+.home-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,215,0,0.6);
+    border-radius: 12px;
+    padding: 18px 12px;
+    color: #fff;
+    min-height: 160px;
+    text-decoration: none;
+}
+
+.home-card strong {
+    color: #ffd700;
+    font-size: 18px;
+}
+
+.home-card small {
+    line-height: 1.5;
+    color: #f9f7d2;
+}
+
+.home-icon {
+    font-size: 34px;
 }
 
 .topbar {
@@ -24,6 +71,31 @@ h1 {
     margin-bottom: 5px;
 }
 
+.main-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.menu-btn {
+    display: inline-block;
+    background-color: #ffd700;
+    color: #5c0612;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.menu-btn.active {
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.2);
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -31,6 +103,15 @@ h1 {
     justify-content: center;
     width: 100%;
     max-width: 1000px;
+}
+
+.screen {
+    display: none;
+    width: 100%;
+}
+
+.screen.active {
+    display: block;
 }
 
 .box {
@@ -74,6 +155,21 @@ h2 {
 
 .profile-box.is-hidden {
     display: none;
+}
+
+.questions-intro {
+    margin-top: -4px;
+    color: #f9f7d2;
+}
+
+.page-container {
+    max-width: 760px;
+    flex-direction: column;
+}
+
+.page-container > .box {
+    flex: none;
+    width: 100%;
 }
 
 #chat-box {
@@ -230,6 +326,499 @@ button:hover {
     font-weight: bold;
     color: #ffd700;
     margin-bottom: 10px;
+}
+
+.team-box {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.team-top {
+    display: grid;
+    gap: 16px;
+}
+
+.team-room {
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,215,0,0.5);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.label {
+    margin: 0 0 10px;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+.room-code-wrap,
+.join-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#room-code {
+    display: inline-block;
+    background: #fff;
+    color: #5c0612;
+    font-weight: bold;
+    padding: 10px 14px;
+    border-radius: 10px;
+    letter-spacing: 1.3px;
+    min-width: 120px;
+    text-align: center;
+}
+
+.primary-btn {
+    background: #fff;
+    color: #5c0612;
+}
+
+.join-room input {
+    flex: 1;
+    min-width: 150px;
+}
+
+.team-player-box {
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,215,0,0.5);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.team-chat {
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,215,0,0.5);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.team-chat-box {
+    min-height: 110px;
+    max-height: 190px;
+    overflow-y: auto;
+    background: #fff;
+    color: #5c0612;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.team-chat-message {
+    padding: 7px 9px;
+    background: #f9f7d2;
+    border-radius: 7px;
+    overflow-wrap: anywhere;
+}
+
+.team-chat-empty {
+    color: #6d5d5d;
+    font-size: 13px;
+}
+
+.team-chat-input {
+    display: flex;
+    gap: 8px;
+}
+
+.team-chat-input input {
+    min-width: 0;
+    flex: 1;
+}
+
+.avatar-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.avatar-option {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #fff;
+    color: #5c0612;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-option.active {
+    background: #ffd700;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.4);
+}
+
+.player-role-switch {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.player-role-switch label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 999px;
+    padding: 8px 10px;
+}
+
+#player-name-input {
+    width: 100%;
+}
+
+.team-game {
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,215,0,0.5);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.team-game-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    color: #ffd700;
+    font-weight: bold;
+}
+
+.mission-text {
+    margin: 0;
+    line-height: 1.5;
+    color: #f9f7d2;
+}
+
+.team-progress {
+    background: rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 10px;
+    color: #ffd700;
+    font-weight: bold;
+    text-align: center;
+}
+
+.co-op-board {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5 / 3;
+    min-height: 260px;
+    overflow: hidden;
+    border: 3px solid #ffd700;
+    border-radius: 12px;
+    background: #176b45;
+    background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    outline: none;
+}
+
+.co-op-board:focus {
+    box-shadow: 0 0 0 3px #fff;
+}
+
+.game-player,
+.game-gift {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    transform: translate(-50%, -50%);
+    user-select: none;
+}
+
+.game-player {
+    z-index: 2;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: #c62828;
+    font-size: 24px;
+}
+
+.player-right {
+    background: #1565c0;
+}
+
+.game-gift {
+    z-index: 1;
+    font-size: 27px;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.game-gift.collected {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+}
+
+.game-keys {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 8px;
+    color: #f9f7d2;
+    font-size: 13px;
+}
+
+.game-keys span {
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 7px 10px;
+}
+
+.touch-controls {
+    display: flex;
+    justify-content: space-around;
+    gap: 18px;
+    text-align: center;
+}
+
+.touch-controls > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.touch-controls span {
+    display: flex;
+    gap: 4px;
+}
+
+.touch-arrow {
+    width: 44px;
+    height: 40px;
+    padding: 4px;
+    touch-action: manipulation;
+}
+
+.role-status {
+    margin: 0;
+    color: #f9f7d2;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+@media (max-width: 680px) {
+    body {
+        padding: 12px;
+    }
+
+    .topbar {
+        margin-bottom: 14px;
+    }
+
+    h1 {
+        font-size: 25px;
+        line-height: 1.2;
+    }
+
+    .topbar p {
+        line-height: 1.4;
+        margin: 8px 0 0;
+    }
+
+    .main-menu {
+        gap: 7px;
+        margin-bottom: 14px;
+    }
+
+    .menu-btn {
+        flex: 1 1 calc(50% - 7px);
+        min-width: 135px;
+        padding: 11px 8px;
+        text-align: center;
+    }
+
+    .container {
+        gap: 14px;
+    }
+
+    .box {
+        min-width: 0;
+        padding: 15px;
+        border-width: 3px;
+        border-radius: 12px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+    .home-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-card {
+        min-height: 130px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+    }
+
+    .chat-input-area,
+    .inline-field,
+    .join-row,
+    .team-chat-input {
+        flex-wrap: wrap;
+    }
+
+    .chat-input-area input,
+    .inline-field input,
+    .join-row input {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .chat-input-area button,
+    .inline-field button,
+    .join-row button,
+    .team-chat-input button {
+        width: 100%;
+    }
+
+    .msg {
+        max-width: 92%;
+    }
+
+    .team-top {
+        gap: 12px;
+    }
+
+    .team-room,
+    .team-player-box,
+    .team-game {
+        padding: 12px;
+    }
+
+    .room-code-wrap {
+        align-items: stretch;
+    }
+
+    .room-code-wrap button,
+    .room-code-wrap .primary-btn {
+        width: 100%;
+    }
+
+    .player-role-switch {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .co-op-board {
+        min-height: 220px;
+    }
+
+    .game-player,
+    .game-gift {
+        width: 36px;
+        height: 36px;
+    }
+
+    .game-player {
+        font-size: 20px;
+    }
+
+    .game-gift {
+        font-size: 23px;
+    }
+
+    button,
+    input[type="text"],
+    .home-card {
+        min-height: 44px;
+    }
+}
+
+@media (max-width: 380px) {
+    body {
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .menu-btn {
+        min-width: 0;
+        font-size: 13px;
+    }
+
+    .box {
+        padding: 12px;
+    }
+
+    .co-op-board {
+        min-height: 190px;
+    }
+}
+
+.restart-btn {
+    align-self: center;
+    background: transparent;
+    color: #fff;
+    border: 1px solid #ffd700;
+}
+
+.team-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+.team-role-card {
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.role-tag {
+    font-weight: bold;
+    color: #ffd700;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.team-role-card h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.team-role-card button {
+    width: 100%;
+    background: #fff;
+    color: #5c0612;
+}
+
+.house-status {
+    background: #fff;
+    color: #5c0612;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .game-tip {

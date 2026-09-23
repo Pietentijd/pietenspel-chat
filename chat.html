@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat met Kletspiet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>🎁 Het Grote Sinterklaas Spel 🎁</h1>
+        <p>Praat gezellig met Kletspiet.</p>
+    </header>
+
+    <nav class="main-menu" aria-label="Hoofdmenu">
+        <a class="menu-btn" href="index.html">🏠 Home</a>
+        <a class="menu-btn active" href="chat.html">💬 Chat</a>
+        <a class="menu-btn" href="pepernoten.html">🍪 Pepernoten</a>
+        <a class="menu-btn" href="samen.html">🤝 Samen spelen</a>
+    </nav>
+
+    <main class="container page-container">
+        <section class="box">
+            <div class="section-heading">
+                <h2>💬 Chat met Kletspiet</h2>
+            </div>
+            <div id="chat-box" aria-live="polite">
+                <div class="msg piet-msg"><strong>Kletspiet:</strong> Hallo daar! Wat leuk dat je er bent. Heb je al zin in pakjesavond? 🎁</div>
+            </div>
+            <div class="chat-input-area">
+                <input id="chat-input" type="text" placeholder="Typ hier je berichtje aan Piet..." aria-label="Bericht invoeren">
+                <button id="send-btn" type="button">Stuur</button>
+            </div>
+            <div class="suggestions" aria-label="Snelle gespreksonderwerpen">
+                <button class="suggestion-btn" type="button" data-message="Ik wil graag over cadeaus praten">🎁 Cadeaus</button>
+                <button class="suggestion-btn" type="button" data-message="Ik vind pepernoten lekker">🍪 Snoep</button>
+                <button class="suggestion-btn" type="button" data-message="Wat doe jij vandaag?">💬 Vraag Piet</button>
+            </div>
+        </section>
+
+        <section class="box profile-box" id="profile-box">
+            <div class="section-heading">
+                <h2>📋 Vraagjes voor Piet</h2>
+                <button id="close-profile-btn" class="close-btn" type="button" aria-label="Vragen sluiten">×</button>
+            </div>
+            <p class="questions-intro">Beantwoord zoveel vraagjes als je wilt. Overslaan mag ook.</p>
+            <div class="profile-form">
+                <div class="input-row"><label for="profile-name">Hoe heet je?</label><div class="inline-field"><input id="profile-name" type="text" placeholder="Bijv. Emma"><button class="skip-btn" type="button" data-skip="profile-name">Overslaan</button></div></div>
+                <div class="input-row"><label for="profile-animal">Wat is je favoriete dier?</label><div class="inline-field"><input id="profile-animal" type="text" placeholder="Bijv. een paard"><button class="skip-btn" type="button" data-skip="profile-animal">Overslaan</button></div></div>
+                <div class="input-row"><label for="profile-hobby">Wat doe je graag?</label><div class="inline-field"><input id="profile-hobby" type="text" placeholder="Bijv. tekenen"><button class="skip-btn" type="button" data-skip="profile-hobby">Overslaan</button></div></div>
+                <div class="input-row"><label for="profile-color">Wat is je lievelingskleur?</label><div class="inline-field"><input id="profile-color" type="text" placeholder="Bijv. blauw"><button class="skip-btn" type="button" data-skip="profile-color">Overslaan</button></div></div>
+                <div class="input-row"><label for="profile-gift">Welk cadeautje vind je leuk?</label><div class="inline-field"><input id="profile-gift" type="text" placeholder="Bijv. LEGO"><button class="skip-btn" type="button" data-skip="profile-gift">Overslaan</button></div></div>
+                <div class="input-row"><label for="profile-snack">Welk snoep vind je lekker?</label><div class="inline-field"><input id="profile-snack" type="text" placeholder="Bijv. pepernoten"><button class="skip-btn" type="button" data-skip="profile-snack">Overslaan</button></div></div>
+                <div class="input-row"><label for="profile-fun">Wat is het leukste deel van pakjesavond?</label><div class="inline-field"><input id="profile-fun" type="text" placeholder="Bijv. het openen van pakjes"><button class="skip-btn" type="button" data-skip="profile-fun">Overslaan</button></div></div>
+                <div class="input-row"><label for="profile-happy">Waar word je blij van?</label><div class="inline-field"><input id="profile-happy" type="text" placeholder="Bijv. samen spelen"><button class="skip-btn" type="button" data-skip="profile-happy">Overslaan</button></div></div>
+                <div class="profile-actions">
+                    <button id="save-profile-btn" type="button" class="save-btn">Gebruik mijn antwoorden</button>
+                    <button id="skip-all-btn" type="button" class="skip-all-btn">Alles overslaan</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
