@@ -607,6 +607,7 @@ function updateTeamChatAccess() {
 function renderTeamChat(messages) {
     if (!teamChatBox) return;
 
+    messages = cleanTeamChatMessages(messages);
     teamChatBox.replaceChildren();
     if (!messages.length) {
         const emptyMessage = document.createElement('div');
@@ -626,11 +627,12 @@ function renderTeamChat(messages) {
 }
 
 function cleanTeamChatMessages(messages) {
-    let previousMessage = '';
+    let previousMessage = null;
     return messages.filter((message) => {
-        const signature = `${message.sender}|${message.text}`;
-        const isDuplicate = !message.id && signature === previousMessage;
-        previousMessage = signature;
+        const sameText = previousMessage && previousMessage.sender === message.sender && previousMessage.text === message.text;
+        const closeTogether = !previousMessage?.time || !message.time || message.time - previousMessage.time < 1500;
+        const isDuplicate = Boolean(sameText && closeTogether);
+        previousMessage = message;
         return !isDuplicate;
     });
 }
@@ -655,6 +657,7 @@ function sendTeamChatMessage() {
     const messages = JSON.parse(localStorage.getItem(`pietenspel-chat-${currentRoomCode}`) || '[]');
     const message = {
         id: `${playerSessionId}-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+        time: Date.now(),
         sender: (playerNameInput?.value || '').trim() || `Speler ${getSelectedRole()}`,
         text
     };
